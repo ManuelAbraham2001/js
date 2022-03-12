@@ -1,0 +1,31 @@
+.header{
+    background-color: $color2;
+    padding: 30px;
+    color: $color4;
+}
+
+.subHeader{
+    background-color: $color2;
+    width: 10%;
+    min-height: 864px;
+    color: $color4;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+.lista{
+    li{
+        font-size: 20px;
+        padding: 10px;
+        text-align: left;
+    }
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+

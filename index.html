@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="contenidoHeader">
+            <h1>Administracion</h1>
+        </div>
+    </header>
+
+    <main class="main" id="principal">
+        <section class="subHeader">
+            <ul class="lista">
+                <li><a>Menu</a></li>
+                <li><a>Cursos</a></li>
+                <li><a>Profesores</a></li>
+                <li><a>Materias</a></li>
+            </ul>
+            <ul class="lista">
+                <li><a>Usuario</a></li>
+                <li><a>Configuracion</a></li>
+                <li><a>Salir</a></li>
+            </ul>
+        </section>
+
+        <section class="cursos" id="panel">
+
+            <!-- <div class="contenidoCursos">
+                <h2>5°A</h2>
+                <p>Cantidad de alumnos: 27</p>
+            </div> -->
+
+
+            
+        </section>
+        <div class="popup" id="popup">
+            <div class="container">
+                <input type="number" class="formCurso" id="anio" placeholder="Año">
+                <input type="number" class="formCant" id="cantidad" placeholder="Cantidad de alumnos">
+                <select id="curso">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                </select>
+                <button id="create">Crear</button>
+                <button id="cerrar">Cerrar</button>
+            </div>
+        </div>
+        <!-- <div class="popup" id="gestion">
+            <div class="container">
+                <button>Nuevo alumno</button>
+                <button>Ver alumno</button>
+                <button onclick="borrar('${anio}')">Borrar curso</button>
+                <button>Cancelar</button>
+            </div>
+        </div> -->
+        <input type="submit" id="crear" value="+" class="agregar"></input>
+    </main>
+
+    <script src="js/app.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600;700;900&display=swap");
+.header {
+  background-color: #B4CFB0;
+  padding: 30px;
+  color: #789395;
+}
+
+.subHeader {
+  background-color: #B4CFB0;
+  width: 10%;
+  min-height: 864px;
+  color: #789395;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lista li {
+  font-size: 20px;
+  padding: 10px;
+  text-align: left;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cursos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 90%;
+  margin: 10px;
+  gap: 10px;
+}
+.agregar {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #B4CFB0;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  z-index: 100;
+}
+
+.popup {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(104, 104, 104, 0.472);
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.show {
+  opacity: 1;
+  z-index: 1;
+}
+
+.container {
+  background-color: #94B49F;
+  width: 600px;
+  height: 300px;
+  padding: 30px;
+}
+
+.contenidoCursos {
+  border: 1px solid green;
+  height: 200px;
+  padding: 30px;
+}
+
+.enlace-curso {
+  text-decoration: none;
+  color: #000;
+}
+
+.contenidoCursos-a{
+  color: #000;
+  text-decoration: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Rubik, Helvetica, sans-serif;
+}
+
+/*# sourceMappingURL=styles.css.map */
