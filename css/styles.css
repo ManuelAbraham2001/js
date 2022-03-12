@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600;700;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Rubik, Helvetica, sans-serif;
+}
+
 .header {
   background-color: #B4CFB0;
   padding: 30px;
@@ -90,11 +98,6 @@
   text-decoration: none;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: Rubik, Helvetica, sans-serif;
-}
+
 
 /*# sourceMappingURL=styles.css.map */

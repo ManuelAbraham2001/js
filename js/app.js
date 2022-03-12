@@ -1,5 +1,4 @@
 // evento con el boton de agregar
-
 let nuevoCurso = document.getElementById('crear')
 nuevoCurso.addEventListener('click', () => {
     let mostrarFormulario = document.getElementById('popup')
@@ -84,13 +83,12 @@ function mostrar() {
 
         // agrego al HTML
         contenedorCursos.innerHTML += `
-            <a onclick="gestion('${anio}')"class="contenidoCursos-a" href="#">
-                <div class="contenidoCursos">
-                    <h2>${anio}°${curso}</h2>
-                    <p>Cantidad de alumnos: ${cantidad}</p>
-                    <button onclick="borrar('${anio}')">Eliminar</button>
-                </div>
-            </a>
+            
+            <div class="contenidoCursos">
+                <h2>${anio}°${curso}</h2>
+                <p>Cantidad de alumnos: ${cantidad}</p>
+                <button onclick="borrar('${anio}')">Eliminar</button>
+            </div>
         `
         
     }
