@@ -1,12 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600;700;900&display=swap");
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: Rubik, Helvetica, sans-serif;
-}
-
 .header {
   background-color: #B4CFB0;
   padding: 30px;
@@ -42,6 +34,7 @@
   margin: 10px;
   gap: 10px;
 }
+
 .agregar {
   position: fixed;
   width: 60px;
@@ -77,27 +70,164 @@
 
 .container {
   background-color: #94B49F;
-  width: 600px;
-  height: 300px;
-  padding: 30px;
+  width: 20%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: 2px solid #B4CFB0;
+}
+.container .ul_form_nuevoAlumno {
+  list-style: none;
+  margin: 10px 0;
+  width: 80%;
+}
+.container .ul_form_nuevoAlumno .li_input {
+  margin: 10px 0;
+  text-align: center;
+}
+.container .ul_form_nuevoAlumno .li_input input {
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.container .ul_form_nuevoAlumno .btn-agregar {
+  border: none;
+}
+.container .ul_form_nuevoAlumno .btn-agregar .fa-circle-plus {
+  color: #fff;
+  background-color: #94B49F;
+}
+.container .ul_form_nuevoAlumno .btn-agregar:hover {
+  cursor: pointer;
+}
+.container .ul_form_nuevoAlumno .btn-cancelar {
+  border: none;
+}
+.container .ul_form_nuevoAlumno .btn-cancelar .fa-circle-xmark {
+  color: red;
+  background-color: #94B49F;
+}
+.container .ul_form_nuevoAlumno .btn-cancelar:hover {
+  cursor: pointer;
 }
 
 .contenidoCursos {
   border: 1px solid green;
   height: 200px;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+.contenidoCursos .btn-borrar {
+  border: none;
+}
+.contenidoCursos .btn-borrar .fa-trash {
+  color: red;
+  background-color: #fff;
+}
+.contenidoCursos .btn-borrar:hover {
+  cursor: pointer;
+}
+.contenidoCursos .btn-agregar {
+  border: none;
+}
+.contenidoCursos .btn-agregar .fa-circle-plus {
+  color: #94B49F;
+  background-color: #fff;
+}
+.contenidoCursos .btn-agregar:hover {
+  cursor: pointer;
+}
+.contenidoCursos .btn-editar {
+  border: none;
+}
+.contenidoCursos .btn-editar .fa-pen {
+  color: #94B49F;
+  background-color: #fff;
+}
+.contenidoCursos .btn-editar:hover {
+  cursor: pointer;
+}
+.contenidoCursos .btn-ver {
+  border: none;
+}
+.contenidoCursos .btn-ver .fa-eye {
+  color: #94B49F;
+  background-color: #fff;
+}
+.contenidoCursos .btn-ver:hover {
+  cursor: pointer;
 }
 
-.enlace-curso {
-  text-decoration: none;
-  color: #000;
+.opciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.contenidoCursos-a{
-  color: #000;
-  text-decoration: none;
+.formNuevo {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.formNuevo .input_form_nuevo {
+  width: 80%;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
 }
 
+.btn-update {
+  border: none;
+}
+.btn-update .fa-circle-arrow-up {
+  color: #fff;
+  background-color: #94B49F;
+}
+.btn-update:hover {
+  cursor: pointer;
+}
 
+.btn-agregar {
+  border: none;
+}
+.btn-agregar .fa-circle-plus {
+  color: #fff;
+  background-color: #94B49F;
+}
+.btn-agregar:hover {
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  border: none;
+}
+.btn-cancelar .fa-circle-xmark {
+  color: red;
+  background-color: #94B49F;
+}
+.btn-cancelar:hover {
+  cursor: pointer;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Rubik, Helvetica, sans-serif;
+}
 
 /*# sourceMappingURL=styles.css.map */
