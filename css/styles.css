@@ -207,12 +207,12 @@
   text-align: center;
 }
 
-.div-alerta-alumno {
+.div-alerta-alumno, .div-alerta-nuevoAlumno {
   background-color: red;
   color: white;
   border-radius: 10px;
 }
-.div-alerta-alumno .alerta {
+.div-alerta-alumno .alerta, .div-alerta-nuevoAlumno .alerta {
   padding: 5px;
   text-align: center;
 }

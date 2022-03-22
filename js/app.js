@@ -481,7 +481,7 @@ function alumnoForm(nombre, apellido){
     <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN1" placeholder="Nota 1"></li>
     <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN2" placeholder="Nota 2"></li>
     <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN3" placeholder="Nota 3"></li>
-    <div class="div-alerta-alumno"></div>
+    <div class="div-alerta-nuevoAlumno"></div>
     <li class="li_input"><button class="btn-update" onclick="alumnoEditar('${nombre}', '${apellido}')"><i class="fa-solid fa-circle-arrow-up fa-2x"></i></button>
     <button class="btn-cancelar" id="cancelarAlumnoActualizar" onclick="cancelarAlumno()"><i class="fa-solid fa-circle-xmark fa-2x"></i></button></li>
     </ul>
@@ -509,22 +509,22 @@ function alumnoEditar(nombre, apellido){
     let nuevaN3 = parseFloat(document.getElementById('nuevaN3').value)
 
     if(nuevoNombre.length === 0 && nuevoApellido.length === 0){
-        alerta('Nombre y Apellido invalidos', '.div-alerta-alumno')
+        alerta('Nombre y Apellido invalidos', '.div-alerta-nuevoAlumno')
         return
     }
 
     if(nuevoNombre.length === 0){
-        alerta('Nombre invalido', '.div-alerta-alumno')
+        alerta('Nombre invalido', '.div-alerta-nuevoAlumno')
         return
     }
 
     if(nuevoApellido.length === 0){
-        alerta('Apellido invalido', '.div-alerta-alumno')
+        alerta('Apellido invalido', '.div-alerta-nuevoAlumno')
         return
     }
 
     if(nuevaN1 > 10 || nuevaN1 < 1 || nuevaN2 > 10 || nuevaN2 < 1 || nuevaN3 > 10 || nuevaN3 < 1 || document.getElementById('nuevaN1').value.length == 0 || document. getElementById('nuevaN2').value.length == 0 || document.getElementById('nuevaN3').value.length == 0){
-        alerta('Las notas debe ser de 1 a 10', '.div-alerta-alumno')
+        alerta('Las notas debe ser de 1 a 10', '.div-alerta-nuevoAlumno')
         return
     }
 
