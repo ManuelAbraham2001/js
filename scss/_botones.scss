@@ -1,0 +1,67 @@
+.btn-agregar{
+    border: none;
+    .fa-circle-plus{
+        color: $color3;
+        background-color: #fff;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+        
+}
+    
+.btn-cancelar{
+    border: none;
+    .fa-circle-xmark{
+        color: red;
+        background-color: $color3;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.btn-borrar{
+    border: none;
+    .fa-trash{
+        color:red;
+        background-color: #fff;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.btn-editar{
+    border: none;
+    .fa-pen{
+        color: $color3;
+        background-color: #fff;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.btn-ver{
+    border: none;
+    .fa-eye{
+        color: $color3;
+        background-color: #fff;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.btn-update{
+    border: none;
+    .fa-circle-arrow-up{
+        color: #fff;
+        background-color: $color3;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+    
+}

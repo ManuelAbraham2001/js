@@ -26,6 +26,72 @@
   justify-content: space-between;
 }
 
+.btn-agregar {
+  border: none;
+}
+.btn-agregar .fa-circle-plus {
+  color: #94B49F;
+  background-color: #fff;
+}
+.btn-agregar:hover {
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  border: none;
+}
+.btn-cancelar .fa-circle-xmark {
+  color: red;
+  background-color: #94B49F;
+}
+.btn-cancelar:hover {
+  cursor: pointer;
+}
+
+.btn-borrar {
+  border: none;
+}
+.btn-borrar .fa-trash {
+  color: red;
+  background-color: #fff;
+}
+.btn-borrar:hover {
+  cursor: pointer;
+}
+
+.btn-editar {
+  border: none;
+}
+.btn-editar .fa-pen {
+  color: #94B49F;
+  background-color: #fff;
+}
+.btn-editar:hover {
+  cursor: pointer;
+}
+
+.btn-ver {
+  border: none;
+}
+.btn-ver .fa-eye {
+  color: #94B49F;
+  background-color: #fff;
+}
+.btn-ver:hover {
+  cursor: pointer;
+}
+
+.btn-update {
+  border: none;
+}
+.btn-update .fa-circle-arrow-up {
+  color: #fff;
+  background-color: #94B49F;
+}
+.btn-update:hover {
+  cursor: pointer;
+}
+
 .cursos {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -46,7 +112,7 @@
   border-radius: 50px;
   text-align: center;
   font-size: 30px;
-  z-index: 100;
+  z-index: 0;
 }
 
 .popup {
@@ -95,26 +161,6 @@
   outline: none;
   width: 100%;
 }
-.container .ul_form_nuevoAlumno .btn-agregar {
-  border: none;
-}
-.container .ul_form_nuevoAlumno .btn-agregar .fa-circle-plus {
-  color: #fff;
-  background-color: #94B49F;
-}
-.container .ul_form_nuevoAlumno .btn-agregar:hover {
-  cursor: pointer;
-}
-.container .ul_form_nuevoAlumno .btn-cancelar {
-  border: none;
-}
-.container .ul_form_nuevoAlumno .btn-cancelar .fa-circle-xmark {
-  color: red;
-  background-color: #94B49F;
-}
-.container .ul_form_nuevoAlumno .btn-cancelar:hover {
-  cursor: pointer;
-}
 
 .contenidoCursos {
   border: 1px solid green;
@@ -124,46 +170,6 @@
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
-}
-.contenidoCursos .btn-borrar {
-  border: none;
-}
-.contenidoCursos .btn-borrar .fa-trash {
-  color: red;
-  background-color: #fff;
-}
-.contenidoCursos .btn-borrar:hover {
-  cursor: pointer;
-}
-.contenidoCursos .btn-agregar {
-  border: none;
-}
-.contenidoCursos .btn-agregar .fa-circle-plus {
-  color: #94B49F;
-  background-color: #fff;
-}
-.contenidoCursos .btn-agregar:hover {
-  cursor: pointer;
-}
-.contenidoCursos .btn-editar {
-  border: none;
-}
-.contenidoCursos .btn-editar .fa-pen {
-  color: #94B49F;
-  background-color: #fff;
-}
-.contenidoCursos .btn-editar:hover {
-  cursor: pointer;
-}
-.contenidoCursos .btn-ver {
-  border: none;
-}
-.contenidoCursos .btn-ver .fa-eye {
-  color: #94B49F;
-  background-color: #fff;
-}
-.contenidoCursos .btn-ver:hover {
-  cursor: pointer;
 }
 
 .opciones {
@@ -190,36 +196,75 @@
   outline: none;
 }
 
-.btn-update {
-  border: none;
+.div-alerta, .div-alerta-anio {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  width: 80%;
 }
-.btn-update .fa-circle-arrow-up {
-  color: #fff;
-  background-color: #94B49F;
-}
-.btn-update:hover {
-  cursor: pointer;
-}
-
-.btn-agregar {
-  border: none;
-}
-.btn-agregar .fa-circle-plus {
-  color: #fff;
-  background-color: #94B49F;
-}
-.btn-agregar:hover {
-  cursor: pointer;
+.div-alerta .alerta, .div-alerta-anio .alerta {
+  padding: 5px;
+  text-align: center;
 }
 
-.btn-cancelar {
-  border: none;
+.div-alerta-alumno {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
 }
-.btn-cancelar .fa-circle-xmark {
+.div-alerta-alumno .alerta {
+  padding: 5px;
+  text-align: center;
+}
+
+.margin {
+  margin: 10px 0;
+}
+
+.container-alumnos {
+  background-color: #94B49F;
+  width: 95%;
+  height: auto;
+  max-height: 80%;
+  border-radius: 15px;
+  border: 2px solid #B4CFB0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-alumnos .info_alumno {
+  display: grid;
+  grid-template-columns: 300px 300px 100px 100px 100px 150px 30px 30px;
+  gap: 30px;
+  padding: 20px;
+  align-items: center;
+}
+.container-alumnos .info_alumno p {
+  text-transform: uppercase;
+  color: #FFF;
+}
+.container-alumnos .info_alumno p span {
+  color: red;
+}
+.container-alumnos .info_alumno .btn-editar {
+  background-color: #94B49F;
+}
+.container-alumnos .info_alumno .btn-editar .fa-pen {
+  background-color: #94B49F;
+  color: #FFF;
+}
+.container-alumnos .info_alumno .btn-cancelar {
+  background-color: #94B49F;
+}
+.container-alumnos .btn-cancelar-alumnos {
   color: red;
   background-color: #94B49F;
+  border: none;
+  margin: 10px 0;
 }
-.btn-cancelar:hover {
+.container-alumnos .btn-cancelar-alumnos :hover {
   cursor: pointer;
 }
 
@@ -227,7 +272,23 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Rubik, Helvetica, sans-serif;
+  font-family: "Rubik", Helvetica, sans-serif;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+* ::-webkit-scrollbar {
+  width: 10px;
+}
+* ::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+* ::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0);
+}
+* ::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0);
 }
 
 /*# sourceMappingURL=styles.css.map */

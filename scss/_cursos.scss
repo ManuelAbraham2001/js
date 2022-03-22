@@ -19,7 +19,7 @@
     border-radius:50px;
     text-align:center;
     font-size:30px;
-    z-index:100;
+    z-index: 0;
 }
 
 .popup{
@@ -71,28 +71,6 @@
             }
         }
 
-        .btn-agregar{
-            border: none;
-            .fa-circle-plus{
-                color: #fff;
-                background-color: $color3;
-            }
-            &:hover{
-                cursor: pointer;
-            }
-            
-        }
-
-        .btn-cancelar{
-            border: none;
-            .fa-circle-xmark{
-                color: red;
-                background-color: $color3;
-            }
-            &:hover{
-                cursor: pointer;
-            }
-        }
     }
 }
 
@@ -104,51 +82,6 @@
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
-
-    .btn-borrar{
-        border: none;
-        .fa-trash{
-            color:red;
-            background-color: #fff;
-        }
-        &:hover{
-            cursor: pointer;
-        }
-    }
-
-    .btn-agregar{
-        border: none;
-        .fa-circle-plus{
-            color: $color3;
-            background-color: #fff;
-        }
-        &:hover{
-            cursor: pointer;
-        }
-        
-    }
-
-    .btn-editar{
-        border: none;
-        .fa-pen{
-            color: $color3;
-            background-color: #fff;
-        }
-        &:hover{
-            cursor: pointer;
-        }
-    }
-
-    .btn-ver{
-        border: none;
-        .fa-eye{
-            color: $color3;
-            background-color: #fff;
-        }
-        &:hover{
-            cursor: pointer;
-        }
-    }
 }
 
 .opciones{
@@ -176,42 +109,88 @@
 
     }
 
-
 }
 
-.btn-update{
-    border: none;
-    .fa-circle-arrow-up{
-        color: #fff;
-        background-color: $color3;
+.div-alerta, .div-alerta-anio{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    width: 80%;
+
+    .alerta{
+        padding: 5px;
+        text-align: center;
     }
-    &:hover{
-        cursor: pointer;
-    }
+}
+
+.div-alerta-alumno{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
     
+    .alerta{
+        padding: 5px;
+        text-align: center;
+    }
 }
 
-.btn-agregar{
-    border: none;
-    .fa-circle-plus{
-        color: #fff;
-        background-color: $color3;
-    }
-    &:hover{
-        cursor: pointer;
-    }
+
+
+.margin{
+    margin: 10px 0;
+}
+
+.container-alumnos{
+    background-color: $color3;
+    width: 95%;
+    height: auto;
+    max-height: 80%;
+    border-radius: 15px;
+    border: 2px solid $color2;
+    overflow-y:scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    .info_alumno{
+        display: grid;
+        grid-template-columns: 300px 300px 100px 100px 100px 150px 30px 30px;
+        gap: 30px;
+        padding: 20px;
+        align-items: center;
+
+        p{
+            text-transform: uppercase;
+            color: #FFF;
+            span{
+                color: red;
+            }
+        }
+        .btn-editar{
+            background-color: $color3;
+            .fa-pen{
+                background-color: $color3;
+                color: #FFF;
+            }
+        }
+
+        .btn-cancelar{
+            background-color: $color3;
+        }
         
-}
-    
+    }
 
-.btn-cancelar{
-    border: none;
-    .fa-circle-xmark{
+    .btn-cancelar-alumnos{
         color: red;
         background-color: $color3;
-    }
-    &:hover{
-        cursor: pointer;
-    }
-}
+        border: none;
+        margin: 10px 0; 
 
+        :hover{
+            cursor: pointer;
+        }
+    }
+
+
+}

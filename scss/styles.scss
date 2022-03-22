@@ -8,13 +8,35 @@ $negro: #000;
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600;700;900&display=swap');
 
 @import "./header";
+@import "./botones";
 @import "./cursos";
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Rubik, Helvetica, sans-serif;
+    font-family: 'Rubik', Helvetica, sans-serif;
+
+    /* width */
+::-webkit-scrollbar {
+    width: 10px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f100;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(85, 85, 85, 0);
+  } 
 }
 
 

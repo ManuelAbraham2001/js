@@ -7,8 +7,44 @@ let contenedor = []
 // contador para el id de los cursos
 let idCurso = 0;
 
-// contador id de alumnos
-let idAlumno = 0;
+function alerta(mensaje, clase){
+    let alertaExiste = document.querySelector('.alerta')
+    if(alertaExiste){
+        alertaExiste.remove();
+    }
+
+    let nuevaAlerta = document.createElement('P')
+    nuevaAlerta.textContent = mensaje
+    nuevaAlerta.classList.add('alerta')
+
+    let alerta = document.querySelector(clase)
+    alerta.classList.add('margin')
+    alerta.appendChild(nuevaAlerta)
+
+    setTimeout(() => {
+        let alertaExiste = document.querySelector('.alerta')
+        alertaExiste.remove()
+        let alerta = document.querySelector(clase)
+        alerta.classList.remove('margin')
+    }, 2000)
+
+}
+
+function notificacion(mensaje, color){
+    Toastify({
+        text: mensaje,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: color,
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
+}
 
 // evento con el boton de agregar
 let nuevoCurso = document.getElementById('crear')
@@ -27,11 +63,26 @@ let agregarCurso = document.getElementById('create')
 agregarCurso.addEventListener('click', crear)
 
 function crear(){
-    
+
     // obtengo los datos del form
     let anio = document.getElementById('anio').value
     let cantidadAlumnos = document.getElementById('cantidad').value
     let curso = document.getElementById('curso').value
+
+    if(anio < 1 && cantidadAlumnos < 1){
+        alerta('El anio y la cantidad de alumnos es invalida', '.div-alerta')
+        return
+    }
+
+    if(anio < 1){
+        alerta('Anio invalido', '.div-alerta')
+        return
+    }
+
+    if(cantidadAlumnos < 1){
+        alerta('Ingrese minimo 1 alumno', '.div-alerta')
+        return
+    }
 
     // objeto constructor
     class Curso {
@@ -69,6 +120,7 @@ function crear(){
     mostrarFormulario.classList.remove('show')
 
     // asd
+    notificacion('Curso creado con exito', 'linear-gradient(to right, #68ce60, #55c868, #41c270, #29bc76, #00b67c)')
     mostrar()
     
 }
@@ -85,12 +137,17 @@ function mostrar() {
     contenedorCursos.innerHTML = ''
 
     // itero lo que obtuve de localstorage para obtener los valores
-    for (let i = 0; i < obtengoLocal.length; i++){
+    // for (let i = 0; i < obtengoLocal.length; i++){
 
-        let anio = obtengoLocal[i].anio
-        let cantidad = obtengoLocal[i].cantidadAlumnos
-        let curso = obtengoLocal[i].curso
-        let idCurso = obtengoLocal[i].idCurso
+    //     // let anio = obtengoLocal[i].anio
+    //     // let cantidad = obtengoLocal[i].cantidadAlumnos
+    //     // let curso = obtengoLocal[i].curso
+    //     // let idCurso = obtengoLocal[i].idCurso
+
+    // }
+
+    for (const cursos of obtengoLocal) {
+        let {anio, cantidadAlumnos, curso, idCurso} = cursos
 
         // agrego al HTML
         contenedorCursos.innerHTML += `
@@ -98,17 +155,16 @@ function mostrar() {
             <div class="contenidoCursos">
             <div class="info">
                 <h2>${anio}°${curso}</h2>
-                <p>Cantidad de alumnos: ${cantidad}</p>
+                <p>Cantidad de alumnos: ${cantidadAlumnos}</p>
             </div>
              <div class="opciones">
                 <button class="btn-borrar" onclick="borrar('${idCurso}')"><i class="fa-solid fa-trash fa-2x"></i></button>
                 <button class="btn-agregar" onclick="formAlumno('${idCurso}')"><i class="fa-solid fa-circle-plus fa-2x"></i></button>
-                <button class="btn-editar" onclick="editarCurso('${idCurso}')"><i class="fa-solid fa-pen fa-2x"></i></button>
+                <button class="btn-editar" onclick="editarCurso('${idCurso}', '${anio}', '${cantidadAlumnos}')"><i class="fa-solid fa-pen fa-2x"></i></button>
                 <button class="btn-ver" onclick="mostrarAlumno('${idCurso}')"> <i class="fa-solid fa-eye fa-2x"></i> </button>
             </div>
             </div>
         `
-        
     }
 }
 
@@ -127,6 +183,7 @@ function borrar(idCurso){
     // guardo los resultados actualizados a localstorage
     localStorage.setItem('curso', JSON.stringify(obtengoLocal));
     mostrar()
+    notificacion('Curso eliminado con exito', 'linear-gradient(to right, #ce6060, #c95d67, #c35a6d, #bc5873, #b45778)')
 }
 
 // obtengo el id del curso para crear un alumno
@@ -157,8 +214,11 @@ function formAlumno(idCurso) {
     <li class="li_input">
         <input class="input_form_datosAlumno" type="number" id="nota3" placeholder="Nota 3" min="1" max="10">
     </li class="li_input">
+    <div class="div-alerta-alumno">
+    </div>
     <li class="li_input">
-        <button class="btn-cancelar" id="cancelaAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button> <button class="btn-agregar" onclick="crearAlumno('${idCurso}')"><i class="fa-solid fa-circle-plus fa-2x"></i></button>
+        <button class="btn-cancelar" id="cancelaAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button> <button class="btn-agregar" onclick="crearAlumno('${idCurso}')"><i class="fa-solid fa-circle-plus fa-2x" style="color: #fff;
+        background-color: #94B49F;"></i></button>
     </li>
     </ul>
     `
@@ -183,8 +243,27 @@ function crearAlumno(idCurso) {
     let nota2 = parseFloat(document.getElementById('nota2').value)
     let nota3 = parseFloat(document.getElementById('nota3').value)
 
-    // objeto constructor con la info del alumno
+    if(nombre.length === 0 && apellido.length === 0){
+        alerta('Nombre y Apellido invalidos', '.div-alerta-alumno')
+        return
+    }
 
+    if(nombre.length === 0){
+        alerta('Nombre invalido', '.div-alerta-alumno')
+        return
+    }
+
+    if(apellido.length === 0){
+        alerta('Apellido invalido', '.div-alerta-alumno')
+        return
+    }
+
+    if(nota1 > 10 || nota1 < 1 || nota2 > 10 || nota2 < 1 || nota3 > 10 || nota3 < 1 || document.getElementById('nota1').value.length == 0 || document. getElementById('nota2').value.length == 0 || document.getElementById('nota3').value.length == 0){
+        alerta('Las notas debe ser de 1 a 10', '.div-alerta-alumno')
+        return
+    }
+
+    // objeto constructor con la info del alumno
     class NuevoAlumno {
         constructor(nombre, apellido, nota1, nota2, nota3) {
             this.nombre = nombre
@@ -215,6 +294,7 @@ function crearAlumno(idCurso) {
 
     let formAlumno = document.getElementById('alumnoNuevo')
     formAlumno.classList.remove('show')
+    notificacion('Alumno creado con exito', 'linear-gradient(to right, #68ce60, #55c868, #41c270, #29bc76, #00b67c)')
     
 }
 
@@ -230,28 +310,42 @@ function mostrarAlumno(idCurso){
     mostrarAlumno.innerHTML = ''
     // itero el array de cursos
     for (let i = 0; i < obtengoLocal.length; i++){
+        
         // comparo el id del click con el id del curso del objeto
         if(obtengoLocal[i].idCurso == idCurso){
+            console.log('muestro alumno')
+            if(obtengoLocal[i].contenedor.length == 0){
+                notificacion('No hay alumnos para mostrar', 'linear-gradient(to right, #ce6060, #c95d67, #c35a6d, #bc5873, #b45778)')
+                let mostrar = document.getElementById('container')
+                mostrar.classList.remove('show')
+            }
             // si son iguales, por cada curso recorro el array de alumnos
             for(let x = 0; x < obtengoLocal[i].contenedor.length; x++){
                 // obtengo los datos
-                let nombre = obtengoLocal[i].contenedor[x].nombre
-                let apellido = obtengoLocal[i].contenedor[x].apellido
-                let nota1 = obtengoLocal[i].contenedor[x].nota1
-                let nota2 = obtengoLocal[i].contenedor[x].nota2
-                let nota3 = obtengoLocal[i].contenedor[x].nota3
-                let promedio = (obtengoLocal[i].contenedor[x].nota1 + obtengoLocal[i].contenedor[x].nota2 + obtengoLocal[i].contenedor[x].nota3) / 3
+                // let nombre = obtengoLocal[i].contenedor[x].nombre
+                // let apellido = obtengoLocal[i].contenedor[x].apellido
+                // let nota1 = obtengoLocal[i].contenedor[x].nota1
+                // let nota2 = obtengoLocal[i].contenedor[x].nota2
+                // let nota3 = obtengoLocal[i].contenedor[x].nota3
 
+
+                let {nombre, apellido, nota1, nota2, nota3} = obtengoLocal[i].contenedor[x]
+                let promedio = ((obtengoLocal[i].contenedor[x].nota1 + obtengoLocal[i].contenedor[x].nota2 + obtengoLocal[i].contenedor[x].nota3) / 3).toFixed(2)
+                
                 // muestro en el html
-                mostrarAlumno.innerHTML += `<h2>Nombre: ${nombre}</h2> <br>
-                <p>Apellido: ${apellido}</p>
-                <p>Nota 1: ${nota1}</p>
-                <p>Nota 2: ${nota2}</p>
-                <p>Nota 3: ${nota3}</p>
-                <p>Promedio: ${promedio}</p>
-
-                <button onclick="alumnoForm('${nombre}')"id="formAlumno">Editar</button> 
-                <button onclick="borrarAlumno('${nombre}', '${apellido}')"id="borrarAlumno">Borrar</button> `
+                mostrarAlumno.innerHTML += `
+                <div class="info_alumno">
+                <p>Nombre: <span>${nombre}</span></p>
+                <p>Apellido: <span>${apellido}</span></p>
+                <p>Nota 1: <span>${nota1}</span></p>
+                <p>Nota 2: <span>${nota2}</span></p>
+                <p>Nota 3: <span>${nota3}</span></p>
+                <p>Promedio: <span>${promedio}</p>
+                <button class="btn-editar" onclick="alumnoForm('${nombre}', '${apellido}')"id="formAlumno"><i class="fa-solid fa-pen fa-2x"></i></button> 
+                <button class="btn-cancelar" onclick="borrarAlumno('${nombre}', '${apellido}')"id="borrarAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                </div>
+                
+                `
             }
             
         }
@@ -277,10 +371,10 @@ function borrarAlumno(nombre, apellido){
     for (let i = 0; i < obtengoLocal.length; i++){
         // por cada curso recorro el array de alumnos
         for(let x = 0; x < obtengoLocal[i].contenedor.length; x++){
-            // comparo el nombre del click con el nombre del objeto
+            // comparo el nombre y apellido del click con el nombre del objeto
             if(obtengoLocal[i].contenedor[x].nombre == nombre && obtengoLocal[i].contenedor[x].apellido == apellido){
                 // si son iguales, obtengo el index y lo borro
-                obtengoLocal[i].contenedor.findIndex(el => el.nombre == nombre)
+                obtengoLocal[i].contenedor.findIndex(el => el.apellido == apellido && el.nombre == nombre)
                 obtengoLocal[i].contenedor.splice(x, 1);
                 mostrar.innerHTML += ` `
             }
@@ -289,10 +383,11 @@ function borrarAlumno(nombre, apellido){
     }
     // actualizo LS
     localStorage.setItem('curso', JSON.stringify(obtengoLocal));
-    
+    mostrarAlumno(idCurso)
+    notificacion('Alumno eliminado con exito', 'linear-gradient(to right, #ce6060, #c95d67, #c35a6d, #bc5873, #b45778)')
 }
 
-function editarCurso(idCurso){
+function editarCurso(idCurso, anio, cantidadAlumnos){
     let editar = document.getElementById('editar')
     editar.classList.add('show')
 
@@ -301,13 +396,14 @@ function editarCurso(idCurso){
     
     <div class="formNuevo">
 
-    <input type="number" class="input_form_nuevo" id="editarAnio" placeholder="Año">
-    <input type="number" class="input_form_nuevo" id="editarCantidad" placeholder="Cantidad de alumnos">
+    <input type="number" class="input_form_nuevo" id="editarAnio" placeholder="Año" value="${anio}">
+    <input type="number" class="input_form_nuevo" id="editarCantidad" placeholder="Cantidad de alumnos" value="${cantidadAlumnos}">
     <select class="input_form_nuevo" id="editarCurso">
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
     </select>
+    <div class="div-alerta-anio"></div>
     <div>
         <button class="btn-update" onclick="actualizarAnio('${idCurso}')"id="actualizar"><i class="fa-solid fa-circle-arrow-up fa-2x"></i></button> 
         <button class="btn-cancelar" id="cancelarEditarCurso"><i class="fa-solid fa-circle-xmark fa-2x fa-2x"></i></button>
@@ -334,6 +430,21 @@ function actualizarAnio(idCurso){
     let nuevaCantidad = document.getElementById('editarCantidad').value
     let nuevoCurso = document.getElementById('editarCurso').value
 
+    if(nuevoAnio < 1 && nuevaCantidad < 1){
+        alerta('El anio y la cantidad de alumnos es invalida', '.div-alerta-anio')
+        return
+    }
+
+    if(nuevoAnio < 1){
+        alerta('Anio invalido', '.div-alerta-anio')
+        return
+    }
+
+    if(nuevaCantidad < 1){
+        alerta('Ingrese minimo 1 alumno', '.div-alerta-anio')
+        return
+    }
+
     // recorro el arrat de cursos
     for (let i = 0; i < obtengoLocal.length; i++) {
         if (obtengoLocal[i].idCurso == idCurso) {
@@ -353,7 +464,8 @@ function actualizarAnio(idCurso){
 }
 
 // creo form de editar alumno
-function alumnoForm(nombre){
+function alumnoForm(nombre, apellido){
+    console.log(nombre, apellido)
     let remuevoEditar = document.getElementById('container')
     remuevoEditar.classList.remove('show')
     let editar = document.getElementById('alumnoForm')
@@ -361,13 +473,19 @@ function alumnoForm(nombre){
 
     let form = document.getElementById('alumnoEditar')
     form.innerHTML = `
-    <input type="text"  id="editarNombre" placeholder="Nuevo nombre">
-    <input type="text" id="nuevoApellido" placeholder="Apellido">
-    <input type="number" id="nuevaN1" placeholder="Nota 1">
-    <input type="number" id="nuevaN2" placeholder="Nota 2">
-    <input type="number" id="nuevaN3" placeholder="Nota 3">
-    <button onclick="alumnoEditar('${nombre}')">Actualizar</button>
-    <button id="cancelarAlumnoActualizar" onclick="cancelarAlumno()">Cancelar</button>`
+    
+    <ul class="ul_form_nuevoAlumno">
+    <li><h2 style="text-align: center;">Editar Alumno</h2></li>
+    <li class="li_input"><input class="input_form_datosAlumno" type="text"  id="editarNombre" placeholder="Nuevo nombre" value="${nombre}"></li>
+    <li class="li_input"><input class="input_form_datosAlumno" type="text" id="nuevoApellido" placeholder="Apellido" value="${apellido}"></li>
+    <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN1" placeholder="Nota 1"></li>
+    <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN2" placeholder="Nota 2"></li>
+    <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN3" placeholder="Nota 3"></li>
+    <div class="div-alerta-alumno"></div>
+    <li class="li_input"><button class="btn-update" onclick="alumnoEditar('${nombre}', '${apellido}')"><i class="fa-solid fa-circle-arrow-up fa-2x"></i></button>
+    <button class="btn-cancelar" id="cancelarAlumnoActualizar" onclick="cancelarAlumno()"><i class="fa-solid fa-circle-xmark fa-2x"></i></button></li>
+    </ul>
+    `
 
     let cancelarAlumnoActualizar = document.getElementById('cancelarAlumnoActualizar')
     cancelarAlumnoActualizar.addEventListener('click', () => {
@@ -378,7 +496,8 @@ function alumnoForm(nombre){
 
 // recibo el nombre por parametro y actualizo
 
-function alumnoEditar(nombre){
+function alumnoEditar(nombre, apellido){
+    
     // obtengo LS
     let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
 
@@ -389,27 +508,53 @@ function alumnoEditar(nombre){
     let nuevaN2 = parseFloat(document.getElementById('nuevaN2').value)
     let nuevaN3 = parseFloat(document.getElementById('nuevaN3').value)
 
+    if(nuevoNombre.length === 0 && nuevoApellido.length === 0){
+        alerta('Nombre y Apellido invalidos', '.div-alerta-alumno')
+        return
+    }
+
+    if(nuevoNombre.length === 0){
+        alerta('Nombre invalido', '.div-alerta-alumno')
+        return
+    }
+
+    if(nuevoApellido.length === 0){
+        alerta('Apellido invalido', '.div-alerta-alumno')
+        return
+    }
+
+    if(nuevaN1 > 10 || nuevaN1 < 1 || nuevaN2 > 10 || nuevaN2 < 1 || nuevaN3 > 10 || nuevaN3 < 1 || document.getElementById('nuevaN1').value.length == 0 || document. getElementById('nuevaN2').value.length == 0 || document.getElementById('nuevaN3').value.length == 0){
+        alerta('Las notas debe ser de 1 a 10', '.div-alerta-alumno')
+        return
+    }
+
     // recorro el array de cursos
     for (let i = 0; i < obtengoLocal.length; i++){
         // por cada curso reccorro el array de alumnos
         for(let x = 0; x < obtengoLocal[i].contenedor.length; x++){
-            if(obtengoLocal[i].contenedor[x].nombre == nombre){
+            if(obtengoLocal[i].contenedor[x].nombre == nombre && obtengoLocal[i].contenedor[x].apellido == apellido){
                 // si el nombre del click es igual al del objeto, actualizo los datos
                 obtengoLocal[i].contenedor[x].nombre = nuevoNombre
                 obtengoLocal[i].contenedor[x].apellido = nuevoApellido
                 obtengoLocal[i].contenedor[x].nota1 = nuevaN1
                 obtengoLocal[i].contenedor[x].nota2 = nuevaN2
-                obtengoLocal[i].contenedor[x].nota3 = nuevaN3
+                obtengoLocal[i].contenedor[x].nota3 = nuevaN3      
             }
         }
-        
     }
-
+        
     // actualizo LS
     localStorage.setItem('curso', JSON.stringify(obtengoLocal));
 
     let editar = document.getElementById('alumnoForm')
     editar.classList.remove('show')
+
+    mostrarAlumno(idCurso)
+    notificacion('Alumno actualizado con exito', 'linear-gradient(to right, #68ce60, #55c868, #41c270, #29bc76, #00b67c)')
+}
+
+function cancelarAlumno(){
+    mostrarAlumno(idCurso)
 }
 
 mostrar()

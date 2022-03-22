@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/8c11e060f8.js" crossorigin="anonymous"></script>
     <title>Document</title>
@@ -33,32 +31,30 @@
                 <li><a>Salir</a></li>
             </ul>
         </section>
-
         <section class="cursos" id="panel">
 
-            <!-- <div class="contenidoCursos">
-                <h2>5°A</h2>
-                <p>Cantidad de alumnos: 27</p>
-            </div> -->
-
-
-            
         </section>
         <div class="popup" id="popup">
             <div class="container">
                 <div class="formNuevo">
                     <h2>Crear Año y Curso</h2>
-                    <input type="number" class="input_form_nuevo" id="anio" placeholder="Año">
-                    <input type="number" class="input_form_nuevo" id="cantidad" placeholder="Cantidad de alumnos">
+                    <input type="number" class="input_form_nuevo" id="anio" placeholder="Año" min="1">
+                    <input type="number" class="input_form_nuevo" id="cantidad" placeholder="Cantidad de alumnos" min="1">
                     <select class="input_form_nuevo" id="curso">
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
                     </select>
+
+                    <div class="div-alerta">
+
+                    </div>
+                    
                     <div>
                         <!-- <button class="input_form_nuevo" id="create">Crear</button>
                         <button class="input_form_nuevo" id="cerrar">Cerrar</button> -->
-                        <button class="btn-cancelar" id="cerrar"><i class="fa-solid fa-circle-xmark fa-2x"></i></button> <button id="create" class="btn-agregar"><i class="fa-solid fa-circle-plus fa-2x"></i></button>
+                        <button class="btn-cancelar" id="cerrar"><i class="fa-solid fa-circle-xmark fa-2x"></i></button> <button id="create" class="btn-agregar"><i class="fa-solid fa-circle-plus fa-2x" style="color: #fff;
+                            background-color: #94B49F;"></i></button>
                     </div>
                 </div>
             </div>
@@ -66,7 +62,7 @@
 
         <div class="popup" id="alumnoNuevo">
             <div class="container" id='nuevoAlumno'>
-
+                
             </div>
             <div id="muestraAlumno">
                 
@@ -87,15 +83,20 @@
         </div>
 
         <div class="popup" id="container">
-            <div class="mostrarAlumnos" id="tablaAlumnos">
-            
+            <div class="container-alumnos">
+                <button class="btn-cancelar-alumnos" id="cancelaAlumnoCrear"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                <div class="mostrarAlumnos" id="tablaAlumnos">
+                
+                </div>
+                
             </div>
-            <button id="cancelaAlumnoCrear">Cancelar</button>
+            
         </div>
 
         <input type="submit" id="crear" value="+" class="agregar"></input>
     </main>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/app.js"></script>
 
 
