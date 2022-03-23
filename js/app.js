@@ -55,11 +55,16 @@ let agregarCurso = document.getElementById('create')
 agregarCurso.addEventListener('click', crear)
 
 function crear(){
-    let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
     let idCurso = 0
-    for(let x = 0; x < obtengoLocal.length; x++){
-        let ultimoId = obtengoLocal[obtengoLocal.length - 1].idCurso
-        idCurso = ultimoId + 1
+    if(JSON.parse(localStorage.getItem('curso')) === null){
+        idCurso = 1
+        console.log(idCurso)
+    }else{
+        let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
+            for(let x = 0; x < obtengoLocal.length; x++){
+                let ultimoId = obtengoLocal[obtengoLocal.length - 1].idCurso
+                idCurso = ultimoId + 1
+            }
         localStorage.setItem('curso', JSON.stringify(obtengoLocal))
     }
 
