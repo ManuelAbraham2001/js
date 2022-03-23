@@ -1,12 +1,4 @@
-// contedor de cursos
-let arrCursos = []
-
-// contenedor de alumnos 
-let contenedor = []
-
-// contador para el id de los cursos
-let idCurso = 0;
-
+// let idCurso = 0;
 function alerta(mensaje, clase){
     let alertaExiste = document.querySelector('.alerta')
     if(alertaExiste){
@@ -63,6 +55,13 @@ let agregarCurso = document.getElementById('create')
 agregarCurso.addEventListener('click', crear)
 
 function crear(){
+    let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
+    let idCurso = 0
+    for(let x = 0; x < obtengoLocal.length; x++){
+        let ultimoId = obtengoLocal[obtengoLocal.length - 1].idCurso
+        idCurso = ultimoId + 1
+        localStorage.setItem('curso', JSON.stringify(obtengoLocal))
+    }
 
     // obtengo los datos del form
     let anio = document.getElementById('anio').value
@@ -101,7 +100,7 @@ function crear(){
     // compruebo localstorage
     if(localStorage.getItem('curso') === null){
         // si esta vacio, creo el array para guardar los cursos como objetos
-        arrCursos = []
+        let arrCursos = []
         // agrego el objeto al array
         arrCursos.push(agregoCurso)
         // guardo en localstorage
@@ -175,7 +174,7 @@ function borrar(idCurso){
     // itero sobre los objetos en la propiedad id y lo comparo
     for (let i = 0; i < obtengoLocal.length; i++) {
         if (obtengoLocal[i].idCurso == idCurso) {
-            arrCursos.findIndex(el => el.idCurso == idCurso)
+            obtengoLocal.findIndex(el => el.idCurso == idCurso)
             obtengoLocal.splice(i, 1);
         }
     }
@@ -306,6 +305,9 @@ function mostrarAlumno(idCurso){
     let mostrar = document.getElementById('container')
     mostrar.classList.add('show')
 
+    let ordenar = document.getElementById('ordenar')
+    ordenar.innerHTML = `<button id="ordenaNombre" onclick="ordenar('${idCurso}')">Ordenar por nombre</button>`
+
     let mostrarAlumno = document.getElementById('tablaAlumnos')
     mostrarAlumno.innerHTML = ''
     // itero el array de cursos
@@ -341,8 +343,8 @@ function mostrarAlumno(idCurso){
                 <p>Nota 2: <span>${nota2}</span></p>
                 <p>Nota 3: <span>${nota3}</span></p>
                 <p>Promedio: <span>${promedio}</p>
-                <button class="btn-editar" onclick="alumnoForm('${nombre}', '${apellido}')"id="formAlumno"><i class="fa-solid fa-pen fa-2x"></i></button> 
-                <button class="btn-cancelar" onclick="borrarAlumno('${nombre}', '${apellido}')"id="borrarAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                <button class="btn-editar" onclick="alumnoForm('${nombre}', '${apellido}', '${idCurso}')"id="formAlumno"><i class="fa-solid fa-pen fa-2x"></i></button> 
+                <button class="btn-cancelar" onclick="borrarAlumno('${nombre}', '${apellido}', '${idCurso}')"id="borrarAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
                 </div>
                 
                 `
@@ -361,7 +363,7 @@ function mostrarAlumno(idCurso){
 }
 
 // borrar alumno, obtengo el nombre y apellido del alumno a borrar (no pude implementarlo con id)
-function borrarAlumno(nombre, apellido){
+function borrarAlumno(nombre, apellido, idCurso){
 
     // obtengo los datos de LS
     let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
@@ -464,7 +466,7 @@ function actualizarAnio(idCurso){
 }
 
 // creo form de editar alumno
-function alumnoForm(nombre, apellido){
+function alumnoForm(nombre, apellido, idCurso){
     console.log(nombre, apellido)
     let remuevoEditar = document.getElementById('container')
     remuevoEditar.classList.remove('show')
@@ -482,8 +484,8 @@ function alumnoForm(nombre, apellido){
     <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN2" placeholder="Nota 2"></li>
     <li class="li_input"><input class="input_form_datosAlumno" type="number" id="nuevaN3" placeholder="Nota 3"></li>
     <div class="div-alerta-nuevoAlumno"></div>
-    <li class="li_input"><button class="btn-update" onclick="alumnoEditar('${nombre}', '${apellido}')"><i class="fa-solid fa-circle-arrow-up fa-2x"></i></button>
-    <button class="btn-cancelar" id="cancelarAlumnoActualizar" onclick="cancelarAlumno()"><i class="fa-solid fa-circle-xmark fa-2x"></i></button></li>
+    <li class="li_input"><button class="btn-update" onclick="alumnoEditar('${nombre}', '${apellido}', '${idCurso}')"><i class="fa-solid fa-circle-arrow-up fa-2x"></i></button>
+    <button class="btn-cancelar" id="cancelarAlumnoActualizar"><i class="fa-solid fa-circle-xmark fa-2x"></i></button></li>
     </ul>
     `
 
@@ -491,12 +493,13 @@ function alumnoForm(nombre, apellido){
     cancelarAlumnoActualizar.addEventListener('click', () => {
         let cerrarAlumnoActualizar = document.getElementById('alumnoForm')
         cerrarAlumnoActualizar.classList.remove('show')
+        mostrarAlumno(idCurso)
     })
 }
 
 // recibo el nombre por parametro y actualizo
 
-function alumnoEditar(nombre, apellido){
+function alumnoEditar(nombre, apellido, idCurso){
     
     // obtengo LS
     let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
@@ -553,8 +556,26 @@ function alumnoEditar(nombre, apellido){
     notificacion('Alumno actualizado con exito', 'linear-gradient(to right, #68ce60, #55c868, #41c270, #29bc76, #00b67c)')
 }
 
-function cancelarAlumno(){
-    mostrarAlumno(idCurso)
+let ordenaNombre = document.getElementById('ordenaNombre')
+function ordenar(idCurso){
+    let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
+    for (let i = 0; i < obtengoLocal.length; i++){
+        if(obtengoLocal[i].idCurso == idCurso){
+            obtengoLocal[i].contenedor.sort(function(a, b){
+                if(a.nombre > b.nombre) return 1
+                
+                if(a.nombre < b.nombre) return -1
+        
+                return 0
+            })
+
+            mostrarAlumno(idCurso)
+        }
+
+
+    }
+
+    localStorage.setItem('curso', JSON.stringify(obtengoLocal));
 }
 
 mostrar()
