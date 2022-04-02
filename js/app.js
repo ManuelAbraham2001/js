@@ -1,4 +1,33 @@
-// let idCurso = 0;
+let btn_cursos = document.querySelector('.btn_cursos')
+btn_cursos.addEventListener('click', () => {
+    let panel = document.getElementById('panel')
+    let crear = document.getElementById('crear')
+    crear.classList.remove('hidden')
+    panel.classList.remove('profesores', 'materias')
+    panel.classList.add('cursos')
+    mostrar()
+})
+
+let btn_profesores = document.querySelector('.btn_profesores')
+btn_profesores.addEventListener('click', () =>{
+    let panel = document.getElementById('panel')
+    let crear = document.getElementById('crear')
+    crear.classList.add('hidden')
+    panel.classList.remove('cursos', 'materias')
+    panel.classList.add('profesores')
+    profesores()
+})
+
+let btn_materias = document.querySelector('.btn_materias')
+btn_materias.addEventListener('click', () =>{
+    let panel = document.getElementById('panel')
+    let crear = document.getElementById('crear')
+    crear.classList.add('hidden')
+    panel.classList.remove('profesores', 'cursos')
+    panel.classList.add('materias')
+    materias()
+})
+
 function alerta(mensaje, clase){
     let alertaExiste = document.querySelector('.alerta')
     if(alertaExiste){
@@ -58,7 +87,6 @@ function crear(){
     let idCurso = 0
     if(JSON.parse(localStorage.getItem('curso')) === null){
         idCurso = 1
-        console.log(idCurso)
     }else{
         let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
             for(let x = 0; x < obtengoLocal.length; x++){
@@ -269,12 +297,13 @@ function crearAlumno(idCurso) {
 
     // objeto constructor con la info del alumno
     class NuevoAlumno {
-        constructor(nombre, apellido, nota1, nota2, nota3) {
+        constructor(nombre, apellido, nota1, nota2, nota3, promedio) {
             this.nombre = nombre
             this.apellido = apellido
             this.nota1 = nota1
             this.nota2 = nota2
             this.nota3 = nota3
+            this.promedio = promedio = parseFloat(((nota1 + nota2 + nota3) / 3).toFixed(2))
         }
     }
 
@@ -311,8 +340,14 @@ function mostrarAlumno(idCurso){
     mostrar.classList.add('show')
 
     let ordenar = document.getElementById('ordenar')
-    ordenar.innerHTML = `<button id="ordenaNombre" onclick="ordenar('${idCurso}')">Ordenar por nombre</button>`
-
+    ordenar.innerHTML = `<button id="ordenaNombre" onclick="ordenar('${idCurso}')">Ordenar por nombre</button> 
+    <button id="ordenaApellido" onclick="ordenarApellido('${idCurso}')">Ordenar por apellido</button>
+    <button id="ordenaPromedio" onclick="ordenarPromedio('${idCurso}')">Ordenar por promedio</button>
+    <button id="ordenaAprobados" onclick="mostrarAprobados('${idCurso}')">Mostrar aprobados</button> 
+    <button id="ordenaDesaprobados" onclick="mostrarDesaprobados('${idCurso}')">Mostrar desaprobados</button>
+    <button id="restablecer" onclick="restablecer('${idCurso}')">Restablecer</button>
+    `
+    
     let mostrarAlumno = document.getElementById('tablaAlumnos')
     mostrarAlumno.innerHTML = ''
     // itero el array de cursos
@@ -320,7 +355,6 @@ function mostrarAlumno(idCurso){
         
         // comparo el id del click con el id del curso del objeto
         if(obtengoLocal[i].idCurso == idCurso){
-            console.log('muestro alumno')
             if(obtengoLocal[i].contenedor.length == 0){
                 notificacion('No hay alumnos para mostrar', 'linear-gradient(to right, #ce6060, #c95d67, #c35a6d, #bc5873, #b45778)')
                 let mostrar = document.getElementById('container')
@@ -336,20 +370,22 @@ function mostrarAlumno(idCurso){
                 // let nota3 = obtengoLocal[i].contenedor[x].nota3
 
 
-                let {nombre, apellido, nota1, nota2, nota3} = obtengoLocal[i].contenedor[x]
-                let promedio = ((obtengoLocal[i].contenedor[x].nota1 + obtengoLocal[i].contenedor[x].nota2 + obtengoLocal[i].contenedor[x].nota3) / 3).toFixed(2)
+                let {nombre, apellido, nota1, nota2, nota3, promedio} = obtengoLocal[i].contenedor[x]
+                // let promedio = ((obtengoLocal[i].contenedor[x].nota1 + obtengoLocal[i].contenedor[x].nota2 + obtengoLocal[i].contenedor[x].nota3) / 3).toFixed(2)
                 
                 // muestro en el html
                 mostrarAlumno.innerHTML += `
                 <div class="info_alumno">
-                <p>Nombre: <span>${nombre}</span></p>
-                <p>Apellido: <span>${apellido}</span></p>
-                <p>Nota 1: <span>${nota1}</span></p>
-                <p>Nota 2: <span>${nota2}</span></p>
-                <p>Nota 3: <span>${nota3}</span></p>
-                <p>Promedio: <span>${promedio}</p>
-                <button class="btn-editar" onclick="alumnoForm('${nombre}', '${apellido}', '${idCurso}')"id="formAlumno"><i class="fa-solid fa-pen fa-2x"></i></button> 
-                <button class="btn-cancelar" onclick="borrarAlumno('${nombre}', '${apellido}', '${idCurso}')"id="borrarAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                    <p>Nombre: <span>${nombre}</span></p>
+                    <p>Apellido: <span>${apellido}</span></p>
+                    <p>Nota 1: <span>${nota1}</span></p>
+                    <p>Nota 2: <span>${nota2}</span></p>
+                    <p>Nota 3: <span>${nota3}</span></p>
+                    <p>Promedio: <span>${promedio}</p>
+                    <div class="btns__info__alumnos">
+                        <button class="btn-editar" onclick="alumnoForm('${nombre}', '${apellido}', '${idCurso}')"id="formAlumno"><i class="fa-solid fa-pen fa-2x"></i></button> 
+                        <button class="btn-cancelar" onclick="borrarAlumno('${nombre}', '${apellido}', '${idCurso}')"id="borrarAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                    </div>
                 </div>
                 
                 `
@@ -472,7 +508,6 @@ function actualizarAnio(idCurso){
 
 // creo form de editar alumno
 function alumnoForm(nombre, apellido, idCurso){
-    console.log(nombre, apellido)
     let remuevoEditar = document.getElementById('container')
     remuevoEditar.classList.remove('show')
     let editar = document.getElementById('alumnoForm')
@@ -546,7 +581,8 @@ function alumnoEditar(nombre, apellido, idCurso){
                 obtengoLocal[i].contenedor[x].apellido = nuevoApellido
                 obtengoLocal[i].contenedor[x].nota1 = nuevaN1
                 obtengoLocal[i].contenedor[x].nota2 = nuevaN2
-                obtengoLocal[i].contenedor[x].nota3 = nuevaN3      
+                obtengoLocal[i].contenedor[x].nota3 = nuevaN3    
+                obtengoLocal[i].contenedor[x].promedio = parseFloat(((nuevaN1 + nuevaN2 + nuevaN3) / 3).toFixed(2))
             }
         }
     }
@@ -583,5 +619,96 @@ function ordenar(idCurso){
     localStorage.setItem('curso', JSON.stringify(obtengoLocal));
 }
 
-mostrar()
+let ordenaApellido = document.getElementById('ordenaApellido')
 
+function ordenarApellido(idCurso){
+    let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
+    for (let i = 0; i < obtengoLocal.length; i++){
+        if(obtengoLocal[i].idCurso == idCurso){
+            obtengoLocal[i].contenedor.sort(function(a, b){
+                if(a.apellido > b.apellido) return 1
+                    
+                if(a.apellido < b.apellido) return -1
+            
+                return 0
+            })
+    
+            mostrarAlumno(idCurso)
+        }
+    
+    }
+    
+    localStorage.setItem('curso', JSON.stringify(obtengoLocal));
+}
+
+let ordenaPromedio = document.getElementById('ordenaPromedio')
+
+function ordenarPromedio(idCurso){
+    // obtengo los cursos de LS
+    let obtengoLocal = JSON.parse(localStorage.getItem('curso'))
+
+    let mostrarAlumno = document.getElementById('tablaAlumnos')
+    mostrarAlumno.innerHTML = ''
+
+    for (let i = 0; i < obtengoLocal.length; i++){
+        if(obtengoLocal[i].idCurso == idCurso){
+            
+            for(let x = 0; x < obtengoLocal[i].contenedor.length; x++){
+                
+                obtengoLocal[i].contenedor.sort(function(a, b){return b.promedio - a.promedio})
+                let {nombre, apellido, nota1, nota2, nota3, promedio} = obtengoLocal[i].contenedor[x]
+                // let promedio = ((obtengoLocal[i].contenedor[x].nota1 + obtengoLocal[i].contenedor[x].nota2 + obtengoLocal[i].contenedor[x].nota3) / 3).toFixed(2)
+                
+                // muestro en el html
+                mostrarAlumno.innerHTML += `
+                <div class="info_alumno">
+                <p>Nombre: <span>${nombre}</span></p>
+                <p>Apellido: <span>${apellido}</span></p>
+                <p>Nota 1: <span>${nota1}</span></p>
+                <p>Nota 2: <span>${nota2}</span></p>
+                <p>Nota 3: <span>${nota3}</span></p>
+                <p>Promedio: <span>${promedio}</p>
+                <div class="btns__info__alumnos">
+                    <button class="btn-editar" onclick="alumnoForm('${nombre}', '${apellido}', '${idCurso}')"id="formAlumno"><i class="fa-solid fa-pen fa-2x"></i></button> 
+                    <button class="btn-cancelar" onclick="borrarAlumno('${nombre}', '${apellido}', '${idCurso}')"id="borrarAlumno"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
+                </div>
+                </div>
+                
+                `
+            
+            }   
+        }
+        
+    }
+
+}
+
+function profesores(){
+    let fetchDatos = async () =>{
+
+        let panel = document.getElementById('panel')
+        panel.innerHTML = ''
+    
+        try {
+            let res = await fetch('profesores.json')
+            let data = await res.json()
+            data.forEach((producto) => {
+                panel.innerHTML += `
+                <div class="profesores__content">
+                    <p>Nombre: <span>${producto.nombre}</span></p>
+                    <p>Apellido: <span>${producto.apellido}</span></p>
+                    <p>Materia: <span>${producto.materia}</span></p>
+                    <p>Sueldo: <span>$${producto.sueldo}</span></p>
+                </div>
+                `
+            });
+    
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    fetchDatos()
+}
+
+mostrar()

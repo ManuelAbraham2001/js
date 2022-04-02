@@ -1,0 +1,17 @@
+.profesores{
+    width: 90%;
+    margin: 10px;
+
+    .profesores__content{
+        border: 1px solid green;
+        display: grid;
+        grid-template-columns: repeat(4, 2fr);
+        padding: 20px;
+        margin: 10px 0;
+        place-items: left;
+        
+        span{
+            font-weight: bold;
+        }
+    }
+}

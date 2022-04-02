@@ -1,0 +1,87 @@
+[
+    {
+        "nombre": "Tomas",
+        "apellido": "Salgueiro",
+        "materia": "Ciudadania",
+        "sueldo": 60000,
+        "id": 1
+    },
+    {
+        "nombre": "Martin",
+        "apellido": "Benitez",
+        "materia": "Sociales",
+        "sueldo": 70000,
+        "id": 2
+    },
+    {
+        "nombre": "Lorena",
+        "apellido": "Santichia",
+        "materia": "Geografia",
+        "sueldo": 75000,
+        "id": 3
+    },
+    {
+        "nombre": "Gabriela",
+        "apellido": "Romero",
+        "materia": "Biologia",
+        "sueldo": 80000,
+        "id": 4
+    },
+    {
+        "nombre": "Diego",
+        "apellido": "Gil",
+        "materia": "Educacion fisica",
+        "sueldo": 60000,
+        "id": 5
+    },
+    {
+        "nombre": "Romina",
+        "apellido": "Zamora",
+        "materia": "Literatura",
+        "sueldo": 65000,
+        "id": 6
+    },
+    {
+        "nombre": "Sergio",
+        "apellido": "Fernandez",
+        "materia": "Historia",
+        "sueldo": 70000,
+        "id": 7
+    },
+    {
+        "nombre": "Javier",
+        "apellido": "Duranti",
+        "materia": "Politica",
+        "sueldo": 65000,
+        "id": 8
+    },
+    {
+        "nombre": "Eric",
+        "apellido": "Gutin",
+        "materia": "Filosofia",
+        "sueldo": 60000,
+        "id": 9
+    },
+    {
+        "nombre": "Perla",
+        "apellido": "Schneider",
+        "materia": "Matematica",
+        "sueldo": 80000,
+        "id": 10
+    },
+    {
+        "nombre": "Gustavo",
+        "apellido": "Lagorio",
+        "materia": "Fisica",
+        "sueldo": 80000,
+        "id": 11
+    },
+    {
+        "nombre": "Maria Laura",
+        "apellido": "Galupo",
+        "materia": "Ingles",
+        "sueldo": 90000,
+        "id": 12
+    }
+
+]

@@ -10,27 +10,31 @@ $negro: #000;
 @import "./header";
 @import "./botones";
 @import "./cursos";
+@import "./profesores";
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Rubik', Helvetica, sans-serif;
+    
 
     /* width */
-::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 10px;
-    
+    display: none;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f100;
+    background: $color3;
+    
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgba(136, 136, 136, 0);
+    background: $blanco;
+    border-radius: 50px;
   }
   
   /* Handle on hover */
@@ -39,6 +43,9 @@ $negro: #000;
   } 
 }
 
+.hidden{
+  display: none;
+}
 
 
 
