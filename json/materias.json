@@ -1,0 +1,73 @@
+[
+    {
+        "materia": "Matematica",
+        "AlumnosInscriptos": 500,
+        "horarios": "8hs - 11hs",
+        "dias": "Lunes, martes y viernes",
+        "id": 1
+    },    
+    {
+        "materia": "Filosofia",
+        "AlumnosInscriptos": 200,
+        "horarios": "9hs - 13hs",
+        "dias": "Lunes, jueves y viernes",
+        "id": 2
+    },
+    {
+        "materia": "Fisica",
+        "AlumnosInscriptos": 700,
+        "horarios": "14hs - 17hs",
+        "dias": "Martes, Miercoles y viernes",
+        "id": 3
+    },
+    {
+        "materia": "Literatura",
+        "AlumnosInscriptos": 300,
+        "horarios": "7hs - 9hs",
+        "dias": "Martes, Miercoles y Jueves",
+        "id": 4
+    },
+    {
+        "materia": "Geografia",
+        "AlumnosInscriptos": 200,
+        "horarios": "9hs - 12hs",
+        "dias": "Martes y viernes",
+        "id": 5
+    },
+    {
+        "materia": "Ingles",
+        "AlumnosInscriptos": 500,
+        "horarios": "8hs - 9:30hs",
+        "dias": "Lunes y viernes",
+        "id": 6
+    },
+    {
+        "materia": "Politica",
+        "AlumnosInscriptos": 800,
+        "horarios": "8hs - 11hs",
+        "dias": "Lunes, miercoles y viernes",
+        "id": 7
+    },
+    {
+        "materia": "Biologia",
+        "AlumnosInscriptos": 300,
+        "horarios": "13hs - 15hs",
+        "dias": "Lunes, martes y viernes",
+        "id": 8
+    },
+    {
+        "materia": "Quimica",
+        "AlumnosInscriptos": 500,
+        "horarios": "11hs - 13hs",
+        "dias": "Martes, miercoles y viernes",
+        "id": 9
+    },
+    {
+        "materia": "Historia",
+        "AlumnosInscriptos": 600,
+        "horarios": "13hs - 15hs",
+        "dias": "Miercoles, jueves y viernes",
+        "id": 10
+    }
+
+]

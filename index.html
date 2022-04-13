@@ -14,8 +14,23 @@
     <header class="header">
         <div class="contenidoHeader">
             <h1>Gestor de alumnos</h1>
+            <div class="bars">
+                <i class="fa-solid fa-bars fa-3x"></i>
+            </div>
         </div>
     </header>
+
+    <div class="menu__mobile hidden">
+        <ul class="listaMobile">
+            <li><button class="btn_cursos btn_menu">Cursos</button></li>
+            <li><button class="btn_profesores btn_menu">Profesores</button></li>
+            <li><button class="btn_materias btn_menu">Materias</button></li>
+        </ul>
+        <!-- <div class="menu__mobile__close" id="close__menu__mobile">
+            <i class="fa-solid fa-xmark fa-3x"></i>
+        </div> -->
+    </div>
+
 
     <main class="main" id="principal">
         <section class="subHeader">
@@ -33,7 +48,6 @@
                 <div class="formNuevo">
                     <h2>Crear Año y Curso</h2>
                     <input type="number" class="input_form_nuevo" id="anio" placeholder="Año" min="1">
-                    <input type="number" class="input_form_nuevo" id="cantidad" placeholder="Cantidad de alumnos" min="1">
                     <select class="input_form_nuevo" id="curso">
                         <option value="A">A</option>
                         <option value="B">B</option>
@@ -66,7 +80,6 @@
         <div class="popup" id="editar">
             <div class="container" id='editarCurso'>
                 
-                
             </div>
         </div>
 
@@ -79,7 +92,7 @@
         <div class="popup" id="container">
             <div class="container-alumnos">
                 <button class="btn-cancelar-alumnos" id="cancelaAlumnoCrear"><i class="fa-solid fa-circle-xmark fa-2x"></i></button>
-                <div id="ordenar">
+                <div class="navEditar" id="ordenar">
 
                 </div>
                 

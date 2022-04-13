@@ -4,6 +4,9 @@
   padding: 30px;
   color: #789395;
 }
+.header .bars {
+  display: none;
+}
 
 .subHeader {
   background-color: #B4CFB0;
@@ -23,17 +26,74 @@
 
 .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.bars__menu {
+  display: flex;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.547);
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 50%;
+  z-index: 999;
+  flex-direction: row;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
   .header {
     font-size: 0.8rem;
     text-align: center;
+    padding: 10px;
+  }
+  .header .contenidoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header .bars {
+    display: block;
+    cursor: pointer;
   }
 
   .subHeader {
     display: none;
+  }
+
+  .menu__mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: #B4CFB0;
+    position: absolute;
+    z-index: 999;
+    color: #789395;
+    border-radius: 0 0 10px 10px;
+  }
+  .menu__mobile i {
+    cursor: pointer;
+  }
+  .menu__mobile ul {
+    list-style: none;
+    width: 100%;
+  }
+  .menu__mobile ul li {
+    margin: 10px 10px;
+  }
+  .menu__mobile ul button {
+    color: #789395;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #789395;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #B4CFB0;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 768px) {
@@ -315,6 +375,20 @@
   cursor: pointer;
 }
 
+.navEditar button {
+  border: none;
+  background-color: #B4CFB0;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+  color: #94B49F;
+  font-weight: 600;
+  font-size: 16px;
+}
+.navEditar :hover {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 480px) {
   .cursos {
     display: flex;
@@ -360,12 +434,9 @@
     border-radius: 5px;
   }
 
-  #ordenar {
+  .navEditar {
     display: flex;
     flex-direction: column;
-  }
-  #ordenar button {
-    margin: 5px 0;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 768px) {
@@ -417,12 +488,9 @@
     border-radius: 5px;
   }
 
-  #ordenar {
+  .navEditar {
     display: flex;
     flex-direction: column;
-  }
-  #ordenar button {
-    margin: 5px 0;
   }
 }
 @media only screen and (min-width: 769px) and (max-width: 1400px) {
@@ -459,12 +527,9 @@
     border-radius: 5px;
   }
 
-  #ordenar {
+  .navEditar {
     display: flex;
     flex-direction: column;
-  }
-  #ordenar button {
-    margin: 5px 0;
   }
 }
 .profesores {
@@ -477,12 +542,74 @@
   grid-template-columns: repeat(4, 2fr);
   padding: 20px;
   margin: 10px 0;
-  place-items: left;
+  place-items: center;
 }
 .profesores .profesores__content span {
   font-weight: bold;
 }
 
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .profesores {
+    width: 100%;
+    margin: 5px;
+  }
+  .profesores .profesores__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .profesores {
+    margin: 5px;
+  }
+  .profesores .profesores__content {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-template-rows: repeat(2, 2fr);
+    place-items: center;
+  }
+}
+.materias {
+  width: 90%;
+  margin: 10px;
+}
+.materias .materias__content {
+  border: 1px solid green;
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  padding: 20px;
+  margin: 10px 0;
+  place-items: left;
+}
+.materias .materias__content span {
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .materias {
+    width: 100%;
+    margin: 5px;
+  }
+  .materias .materias__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .materias {
+    margin: 5px;
+  }
+  .materias .materias__content {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-template-rows: repeat(2, 2fr);
+    place-items: center;
+  }
+}
 * {
   padding: 0;
   margin: 0;

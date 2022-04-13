@@ -8,7 +8,6 @@
     
 }
 
-
 .agregar{
     position:fixed;
     width:60px;
@@ -136,8 +135,6 @@
     }
 }
 
-
-
 .margin{
     margin: 10px 0;
 }
@@ -209,6 +206,21 @@
 
 }
 
+.navEditar{
+    button{
+        border: none;
+        background-color: $color2;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 5px 0;
+        color: $color3;
+        font-weight: 600;
+        font-size: 16px;
+    }:hover{
+        cursor: pointer;
+    }
+}
+
 
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
@@ -263,12 +275,9 @@
     
     }
 
-    #ordenar{
+    .navEditar{
         display: flex;
         flex-direction: column;
-        button{
-            margin: 5px 0;
-        }
     }
 }
 
@@ -329,12 +338,9 @@
     
     }
 
-    #ordenar{
+    .navEditar{
         display: flex;
         flex-direction: column;
-        button{
-            margin: 5px 0;
-        }
     }
 
 }
@@ -380,11 +386,8 @@
     
     }
 
-    #ordenar{
+    .navEditar{
         display: flex;
         flex-direction: column;
-        button{
-            margin: 5px 0;
-        }
     }
 }
